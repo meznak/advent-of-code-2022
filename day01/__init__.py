@@ -51,4 +51,3 @@ def solve_2(dataset: list) -> int:
     calorie_sums.sort()
 
     return sum(calorie_sums[-3:])
-n
