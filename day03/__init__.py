@@ -1,10 +1,8 @@
-# TODO: Add day and title
 '''
 Advent of Code 2022 Day XX
 TITLE
 '''
 
-# TODO: Add sample solutions
 SAMPLE_SOLUTIONS = [157, 70]
 
 
@@ -15,6 +13,7 @@ def parse_data(dataset: list) -> list:
 
 
 def split_lines(dataset: list) -> list:
+    '''Divide line into knapsacks'''
 
     output = []
 
