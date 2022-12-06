@@ -7,7 +7,7 @@ import timeit
 from typing import Callable, List, Tuple
 
 
-def read_input(script_file: str) -> Tuple[list]:
+def read_input(script_file: str, strip=True) -> Tuple[list]:
     '''
     Read sample and puzzle input files
     '''
@@ -16,14 +16,20 @@ def read_input(script_file: str) -> Tuple[list]:
 
     sample_file = os.path.join(path, 'sample1')
     with open(sample_file, 'r') as in_file:
-        sample_1 = [entry.strip() for entry in in_file.readlines()]
+        if strip:
+            sample_1 = [entry.strip() for entry in in_file.readlines()]
+        else:
+            sample_1 = [entry for entry in in_file.readlines()]
         sample_1.append('')
 
     try:
         sample_file = os.path.join(path, 'sample2')
         if os.stat(sample_file).st_size > 0:
             with open(sample_file, 'r') as in_file:
-                sample_2 = [entry.strip() for entry in in_file.readlines()]
+                if strip:
+                    sample_2 = [entry.strip() for entry in in_file.readlines()]
+                else:
+                    sample_2 = [entry.strip() for entry in in_file.readlines()]
                 sample_2.append('')
         else:
             sample_2 = sample_1
@@ -40,9 +46,9 @@ def read_input(script_file: str) -> Tuple[list]:
     return (samples, data)
 
 
-def parse_input(script_file: str, parse_data: Callable[[], list]) -> tuple:
+def parse_input(script_file: str, parse_data: Callable[[], list], strip=True) -> tuple:
     '''Read and parse data'''
-    samples, data = read_input(script_file)
+    samples, data = read_input(script_file, strip)
 
     samples_parsed = [parse_data(sample) for sample in samples]
     data_parsed = parse_data(data)
