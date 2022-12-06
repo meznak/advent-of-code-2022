@@ -19,8 +19,8 @@ def read_input(script_file: str, strip=True) -> Tuple[list]:
         if strip:
             sample_1 = [entry.strip() for entry in in_file.readlines()]
         else:
-            sample_1 = [entry for entry in in_file.readlines()]
-        sample_1.append('')
+            sample_1 = [entry.strip('\n') for entry in in_file.readlines()]
+        #sample_1.append('')
 
     try:
         sample_file = os.path.join(path, 'sample2')
@@ -29,8 +29,8 @@ def read_input(script_file: str, strip=True) -> Tuple[list]:
                 if strip:
                     sample_2 = [entry.strip() for entry in in_file.readlines()]
                 else:
-                    sample_2 = [entry.strip() for entry in in_file.readlines()]
-                sample_2.append('')
+                    sample_2 = [entry.strip('\n') for entry in in_file.readlines()]
+                #sample_2.append('')
         else:
             sample_2 = sample_1
     except FileNotFoundError:
@@ -40,8 +40,11 @@ def read_input(script_file: str, strip=True) -> Tuple[list]:
     samples = [sample_1, sample_2]
 
     with open(os.path.join(path, 'input'), 'r') as in_file:
-        data = [entry.strip() for entry in in_file.readlines()]
-        data.append('')
+        if strip:
+            data = [entry.strip() for entry in in_file.readlines()]
+        else:
+            data = [entry.strip('\n') for entry in in_file.readlines()]
+        #data.append('')
 
     return (samples, data)
 
@@ -76,7 +79,7 @@ def solve_list(sample: List[str], data: List[str], solve: Callable[[list], int],
                 assert(result == sample_solution), \
                     f'''Expected {sample_solution}, got {result}'''
                 print('test PASSED')
-            except AssertionError as e:
+            except AssertionError as err:
                 print(f'test FAILED')
             run_count += 1
 
