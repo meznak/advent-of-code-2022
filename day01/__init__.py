@@ -1,10 +1,8 @@
-# TODO: Add day and title
 '''
 Advent of Code 2022 Day 01
 Calorie Counting
 '''
 
-# TODO: Add sample solutions
 SAMPLE_SOLUTIONS = [24000, 45000]
 
 
@@ -53,3 +51,4 @@ def solve_2(dataset: list) -> int:
     calorie_sums.sort()
 
     return sum(calorie_sums[-3:])
+n

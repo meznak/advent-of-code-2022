@@ -1,10 +1,8 @@
-# TODO: Add day and title
 '''
 Advent of Code 2022 Day 02
 Rock, Paper, Scissors
 '''
 
-# TODO: Add sample solutions
 SAMPLE_SOLUTIONS = [15, 12]
 
 # A, X: Rock
