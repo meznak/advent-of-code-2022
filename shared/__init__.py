@@ -66,9 +66,12 @@ def solve_list(sample: List[str], data: List[str], solve: Callable[[list], int],
         print(f'Time: {stop - start:.9f} seconds')
 
         if run_count == 0:
-            assert(result == sample_solution), \
-                f'''Expected {sample_solution}, got {result}'''
-            print('test passed')
+            try:
+                assert(result == sample_solution), \
+                    f'''Expected {sample_solution}, got {result}'''
+                print('test PASSED')
+            except AssertionError as e:
+                print(f'test FAILED')
             run_count += 1
 
     return result
