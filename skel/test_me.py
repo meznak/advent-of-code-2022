@@ -24,5 +24,5 @@ def test_main():
     tmain.main()
 
 
-def test_parse_input(sample, parsed):
+def test_parse_data(sample, parsed):
     assert parse_data(sample) == parsed
