@@ -3,6 +3,7 @@ Shared library for AoC20xx solutions
 '''
 
 import os
+import sys
 import timeit
 from typing import Callable, List, Tuple
 
@@ -20,7 +21,6 @@ def read_input(script_file: str, strip=True) -> Tuple[list]:
             sample_1 = [entry.strip() for entry in in_file.readlines()]
         else:
             sample_1 = [entry.strip('\n') for entry in in_file.readlines()]
-        #sample_1.append('')
 
     try:
         sample_file = os.path.join(path, 'sample2')
@@ -30,7 +30,6 @@ def read_input(script_file: str, strip=True) -> Tuple[list]:
                     sample_2 = [entry.strip() for entry in in_file.readlines()]
                 else:
                     sample_2 = [entry.strip('\n') for entry in in_file.readlines()]
-                #sample_2.append('')
         else:
             sample_2 = sample_1
     except FileNotFoundError:
@@ -44,7 +43,6 @@ def read_input(script_file: str, strip=True) -> Tuple[list]:
             data = [entry.strip() for entry in in_file.readlines()]
         else:
             data = [entry.strip('\n') for entry in in_file.readlines()]
-        #data.append('')
 
     return (samples, data)
 
@@ -79,8 +77,9 @@ def solve_list(sample: List[str], data: List[str], solve: Callable[[list], int],
                 assert(result == sample_solution), \
                     f'''Expected {sample_solution}, got {result}'''
                 print('test PASSED')
-            except AssertionError as err:
-                print(f'test FAILED')
+            except AssertionError:
+                print('test FAILED')
+                sys.exit(1)
             run_count += 1
 
     return result
